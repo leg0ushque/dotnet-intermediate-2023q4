@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MultiThreading.Task3.MatrixMultiplier.Matrices;
 using MultiThreading.Task3.MatrixMultiplier.Multipliers;
@@ -8,6 +9,10 @@ namespace MultiThreading.Task3.MatrixMultiplier.Tests
     [TestClass]
     public class MultiplierTest
     {
+        private const int MinValue = 1;
+        private const int MaxValue = 10;
+
+
         [TestMethod]
         public void MultiplyMatrix3On3Test()
         {
@@ -18,8 +23,26 @@ namespace MultiThreading.Task3.MatrixMultiplier.Tests
         [TestMethod]
         public void ParallelEfficiencyTest()
         {
-            // todo: implement a test method to check the size of the matrix which makes parallel multiplication more effective than
-            // todo: the regular one
+            const int size = 250;
+
+            var m1 = MatrixFactory.CreateMatrixOfRandoms(size, size, MinValue, MaxValue);
+            var m2 = MatrixFactory.CreateMatrixOfRandoms(size, size, MinValue, MaxValue);
+
+            var sequentialMultiplier = new MatricesMultiplier();
+            var parallelMultiplier = new MatricesMultiplierParallel();
+
+            var nonParallelTimer = Stopwatch.StartNew();
+            sequentialMultiplier.Multiply(m1, m2);
+            nonParallelTimer.Stop();
+
+            var parallelTimer = Stopwatch.StartNew();
+            parallelMultiplier.Multiply(m1, m2);
+            parallelTimer.Stop();
+
+            Console.WriteLine($"Non-parallel calculation takes {nonParallelTimer.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Parallel calculation takes {parallelTimer.ElapsedMilliseconds} ms");
+
+            Assert.AreEqual(parallelTimer.ElapsedMilliseconds < nonParallelTimer.ElapsedMilliseconds, true);
         }
 
         #region private methods
