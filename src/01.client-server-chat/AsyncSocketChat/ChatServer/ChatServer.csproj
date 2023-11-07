@@ -3,7 +3,10 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>MultiThreading.Task2.Chaining</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChatLibrary\ChatLibrary.csproj" />
+  </ItemGroup>
 
 </Project>

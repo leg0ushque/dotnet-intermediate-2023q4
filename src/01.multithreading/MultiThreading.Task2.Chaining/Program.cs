@@ -6,11 +6,18 @@
  * Fourth Task – calculates the average value. All this tasks should print the values to console.
  */
 using System;
+using System.Collections;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MultiThreading.Task2.Chaining
 {
     class Program
     {
+        const int ArraySize = 10;
+        const int RandomMinValue = -10;
+        const int RandomMaxValue = 10;
+
         static void Main(string[] args)
         {
             Console.WriteLine(".Net Mentoring Program. MultiThreading V1 ");
@@ -23,7 +30,63 @@ namespace MultiThreading.Task2.Chaining
 
             // feel free to add your code
 
+            var firstTask = Task.Factory.StartNew(() =>
+            {
+                var array = new int[ArraySize];
+                var random = new Random();
+
+                for (int i = 0; i < ArraySize; i++)
+                {
+                    array[i] = random.Next(RandomMinValue, RandomMaxValue);
+                }
+
+                Console.WriteLine("1st: ");
+                OutputArray(array);
+
+                return array;
+            });
+
+            var secondTask = firstTask.ContinueWith(previousTask =>
+            {
+                var array = previousTask.Result;
+
+                var random = new Random();
+                var coeff = random.Next(RandomMinValue, RandomMaxValue);
+
+                Console.WriteLine("2nd: multiply by " + coeff);
+                var multipliedArray = array.Select(x => x * coeff).ToArray();
+
+                OutputArray(multipliedArray);
+                return multipliedArray;
+            });
+
+            var thirdTask = secondTask.ContinueWith(previousTask =>
+            {
+                var array = previousTask.Result;
+
+                Console.WriteLine("3rd:");
+                var resultArray = array.OrderBy(x => x).ToArray();
+
+                OutputArray(resultArray);
+                return resultArray;
+            });
+
+            var fourthTask = thirdTask.ContinueWith(previousTask =>
+            {
+                var array = previousTask.Result;
+
+                Console.WriteLine("4th:");
+                Console.WriteLine("Average: " + array.Average(x => x));
+            });
+
+            fourthTask.Wait();
+
             Console.ReadLine();
+        }
+
+        static void OutputArray(int[] array)
+        {
+            Console.WriteLine(string.Join("\t", array));
         }
     }
 }
