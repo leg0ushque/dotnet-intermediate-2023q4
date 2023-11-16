@@ -36,8 +36,7 @@ namespace Kafka.Producer
                     Value = message.Value
                 };
 
-                _logger.Information("Trying to produce a message");
-                _logger.Information(JsonConvert.SerializeObject(confluentKafkaMessage));
+                _logger.Information($"Trying to produce a message with filename {message.Value.FileName}");
 
                 await producer.ProduceAsync(_kafkaOptions.Value.Topic, confluentKafkaMessage);
 

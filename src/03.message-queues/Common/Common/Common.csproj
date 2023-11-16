@@ -18,10 +18,6 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Options\" />
-  </ItemGroup>
-
   <Target Name="EnsureThatAvroToolsAreInstalled" BeforeTargets="GenerateModel">
     <Exec Command="dotnet tool install --global Apache.Avro.Tools" ContinueOnError="true" />
   </Target>
