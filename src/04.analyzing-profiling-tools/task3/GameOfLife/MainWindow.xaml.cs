@@ -25,7 +25,7 @@ namespace GameOfLife
 
         private void StartAd()
         {
-            
+
             {
                 adWindow = new AdWindow[2];
                 for (int i = 0; i < 2; i++)
@@ -35,12 +35,12 @@ namespace GameOfLife
                         adWindow[i] = new AdWindow(this);
                         adWindow[i].Closed += AdWindowOnClosed;
                         adWindow[i].Top = this.Top + (330 * i) + 70;
-                        adWindow[i].Left = this.Left + 240;                        
+                        adWindow[i].Left = this.Left + 240;
                         adWindow[i].Show();
                     }
                 }
-                
-                
+
+
             }
         }
 
@@ -51,8 +51,8 @@ namespace GameOfLife
                 adWindow[i].Closed -= AdWindowOnClosed;
                 adWindow[i] = null;
             }
-            
-            
+
+
         }
 
 
@@ -83,6 +83,6 @@ namespace GameOfLife
             mainGrid.Clear();
         }
 
-        
+
     }
 }
