@@ -1,0 +1,23 @@
+﻿{
+  "namespace": "common.messageQueuesTask",
+  "type": "record",
+  "name": "MessageValue",
+  "fields": [
+    {
+      "name": "FileName",
+      "type": "string"
+    },
+    {
+      "name": "Content",
+      "type": "bytes"
+    },
+    {
+      "name": "Position",
+      "type": "int"
+    },
+    {
+      "name": "ChunkSize",
+      "type": "int"
+    }
+  ]
+}

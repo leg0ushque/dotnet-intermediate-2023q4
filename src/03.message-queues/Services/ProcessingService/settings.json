@@ -1,0 +1,11 @@
+{
+  "AllowedHosts": "*",
+  "Kafka": {
+    "BootstrapServer": "localhost:9092",
+    "ClientId": "processing",
+    "Topic": "messagequeuestask.files",
+    "SchemaServer": "localhost:8081",
+    "SchemaApiKey": "",
+    "SchemaApiSecret": ""
+  }
+}
