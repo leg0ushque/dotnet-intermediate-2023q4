@@ -13,26 +13,19 @@ namespace ProfileSample.Controllers
     {
         public ActionResult Index()
         {
-            var context = new ProfileSampleEntities();
-
-            var sources = context.ImgSources.Take(20).Select(x => x.Id);
-            
-            var model = new List<ImageModel>();
-
-            foreach (var id in sources)
+            using (var context = new ProfileSampleEntities())
             {
-                var item = context.ImgSources.Find(id);
+                var imageModels = context.ImgSources
+                    .Take(20)
+                    .Select(item => new ImageModel()
+                    {
+                        Name = item.Name,
+                        Data = item.Data
+                    })
+                    .ToList();
 
-                var obj = new ImageModel()
-                {
-                    Name = item.Name,
-                    Data = item.Data
-                };
-
-                model.Add(obj);
-            } 
-
-            return View(model);
+                return View(imageModels);
+            }
         }
 
         public ActionResult Convert()
@@ -45,20 +38,19 @@ namespace ProfileSample.Controllers
                 {
                     using (var stream = new FileStream(file, FileMode.Open))
                     {
-                        byte[] buff = new byte[stream.Length];
-
-                        stream.Read(buff, 0, (int) stream.Length);
-
-                        var entity = new ImgSource()
+                        using (var reader = new BinaryReader(stream))
                         {
-                            Name = Path.GetFileName(file),
-                            Data = buff,
-                        };
+                            var entity = new ImgSource()
+                            {
+                                Name = Path.GetFileName(file),
+                                Data = reader.ReadBytes((int)stream.Length),
+                            };
 
-                        context.ImgSources.Add(entity);
-                        context.SaveChanges();
+                            context.ImgSources.Add(entity);
+                            context.SaveChanges();
+                        }
                     }
-                } 
+                }
             }
 
             return RedirectToAction("Index");
