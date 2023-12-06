@@ -8,9 +8,12 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Expressions.Task3.E3SQueryProvider.Models.Entities;
+using Expressions.Task3.E3SQueryProvider.Models.Request;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Expressions.Task3.E3SQueryProvider.Test
@@ -22,6 +25,7 @@ namespace Expressions.Task3.E3SQueryProvider.Test
         [Fact]
         public void TestAndQueryable()
         {
+            var serializedRequest = GetSerializedRequest();
             var translator = new ExpressionToFtsRequestTranslator();
             Expression<Func<IQueryable<EmployeeEntity>, IQueryable<EmployeeEntity>>> expression
                 = query => query.Where(e => e.Workstation == "EPRUIZHW006" && e.Manager.StartsWith("John"));
@@ -34,8 +38,31 @@ namespace Expressions.Task3.E3SQueryProvider.Test
               ],
              */
 
-            // todo: create asserts for this test by yourself, because they will depend on your final implementation
-            throw new NotImplementedException("Please implement this test and the appropriate functionality");
+            // Act
+            var value = translator.Translate(expression);
+
+            // Assert
+            Assert.Equal(serializedRequest, value);
+        }
+
+        private string GetSerializedRequest()
+        {
+            var ftsRequest = new FtsQueryRequest
+            {
+                Statements = new List<Statement>
+                {
+                    new Statement
+                    {
+                        Query = "Workstation:(EPRUIZHW006)",
+                    },
+                    new Statement
+                    {
+                        Query = "Manager:(John*)",
+                    }
+                }
+            };
+
+            return JsonConvert.SerializeObject(ftsRequest, Formatting.Indented);
         }
 
         #endregion

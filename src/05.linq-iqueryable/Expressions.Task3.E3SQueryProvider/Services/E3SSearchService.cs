@@ -15,7 +15,7 @@ namespace Expressions.Task3.E3SQueryProvider.Services
 
         private readonly string _baseAddress;
         private readonly HttpClient _httpClient;
-        
+
         #endregion
 
         public E3SSearchService(HttpClient httpClient, string baseAddress)
@@ -36,7 +36,7 @@ namespace Expressions.Task3.E3SQueryProvider.Services
 
             return JsonConvert.DeserializeObject<FtsResponse<T>>(resultString).Items.Select(t => t.Data);
         }
-        
+
         public IEnumerable SearchFts(Type type, string query, int start = 0, int limit = 0)
         {
             Type finalType = typeof(FtsResponse<>).MakeGenericType(type);
@@ -58,7 +58,7 @@ namespace Expressions.Task3.E3SQueryProvider.Services
             object result = JsonConvert.DeserializeObject(resultString, finalType);
 
             var list = Activator.CreateInstance(typeof(List<>).MakeGenericType(type)) as IList;
-            
+
             foreach (object item in (IEnumerable)items.GetValue(result))
             {
                 var data = item.GetType().GetProperty("data");
