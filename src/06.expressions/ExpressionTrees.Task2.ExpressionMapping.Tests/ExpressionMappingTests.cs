@@ -6,15 +6,30 @@ namespace ExpressionTrees.Task2.ExpressionMapping.Tests
     [TestClass]
     public class ExpressionMappingTests
     {
-        // todo: add as many test methods as you wish, but they should be enough to cover basic scenarios of the mapping generator
+        private readonly MappingGenerator _mapGenerator = new MappingGenerator();
 
         [TestMethod]
-        public void TestMethod1()
+        private void GivenSourceDestinationObjects_ShouldMapProperties()
         {
-            var mapGenerator = new MappingGenerator();
-            var mapper = mapGenerator.Generate<Foo, Bar>();
+            // Arrange
+            var mapper = _mapGenerator.GenerateExpressionMapper<Foo, Bar>();
 
-            var res = mapper.Map(new Foo());
+            var src = new Foo
+            {
+                Integer = 7,
+                Double = 3.1415,
+                String = "Lorem ipsum",
+                Bool = false,
+            };
+
+            // Act
+            var dest = mapper.Map(src);
+
+            // Assert
+            Assert.IsTrue(src.Integer == dest.Integer
+                          && src.Double == dest.Double
+                          && src.String == dest.String
+                          && src.Bool == dest.Bool);
         }
     }
 }
