@@ -4,7 +4,8 @@
     {
         Task<int> CreateAsync(TEntityDto entity, CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyCollection<TEntityDto>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<IReadOnlyCollection<TEntityDto>> GetAllAsync(int? pageNumber = null, int? pageSize = null,
+            CancellationToken cancellationToken = default);
 
         Task<TEntityDto> GetById(int entityId, CancellationToken cancellationToken = default);
 

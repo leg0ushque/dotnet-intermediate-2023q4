@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using CatalogService.BusinessLogic.Exceptions;
+using CatalogService.BusinessLogic.Helpers;
 using CatalogService.BusinessLogic.Validators;
 using CatalogService.DataAccess.Entities;
 using CatalogService.DataAccess.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace CatalogService.BusinessLogic.Services
 {
@@ -11,9 +11,9 @@ namespace CatalogService.BusinessLogic.Services
         where TEntity : class, IEntity
         where TEntityDto : class
     {
-        private readonly IValidator<TEntityDto> _validator;
-        private readonly IRepository<TEntity> _repository;
-        private readonly IMapper _mapper;
+        private protected readonly IValidator<TEntityDto> _validator;
+        private protected readonly IRepository<TEntity> _repository;
+        private protected readonly IMapper _mapper;
 
         public GenericEntityService(IValidator<TEntityDto> validator, IRepository<TEntity> repository, IMapper mapper)
         {
@@ -40,10 +40,13 @@ namespace CatalogService.BusinessLogic.Services
             }
         }
 
-        public async Task<IReadOnlyCollection<TEntityDto>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyCollection<TEntityDto>> GetAllAsync(int? pageNumber = null, int? pageSize = null,
+            CancellationToken cancellationToken = default)
         {
+            var allItems = _repository.GetAll();
+
             return _mapper.Map<List<TEntityDto>>(
-                    await _repository.GetAll().ToListAsync(cancellationToken))
+                    await PaginationHelper<TEntity>.GetPage(allItems, pageNumber, pageSize, cancellationToken))
                 .AsReadOnly();
         }
 
