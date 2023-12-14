@@ -22,12 +22,12 @@ namespace CatalogService.WebApi.Controllers
         }
 
         /// <summary>
-        /// Create a <see cref="CatalogItemModel"/>.
+        /// Create a Catalog item.
         /// </summary>
-        /// <param name="catalogItem"><see cref="CatalogItemModel"/> to create</param>
+        /// <param name="catalogItem">Catalog item to create</param>
         /// <returns></returns>
         /// <response code="200">Created item's ID</response>
-        /// <response code="400">Error details</response>
+        /// <response code="400">An error occured while performing the operation</response>
         [HttpPost]
         [Route("")]
         [BusinessLogicExceptionFilter(HttpCode.BadRequest, StatusCodes.Status400BadRequest)]
@@ -45,12 +45,12 @@ namespace CatalogService.WebApi.Controllers
         }
 
         /// <summary>
-        /// Update the <see cref="CatalogItemModel"/>.
+        /// Update the Catalog item.
         /// </summary>
-        /// <param name="catalogItem"><see cref="CatalogItemModel"/> to update</param>
+        /// <param name="catalogItem">Catalog item to update</param>
         /// <returns></returns>
         /// <response code="200">Update was executed successfully</response>
-        /// <response code="400">Error details</response>
+        /// <response code="400">An error occured while performing the operation</response>
         [HttpPut]
         [Route("")]
         [BusinessLogicExceptionFilter(HttpCode.BadRequest, StatusCodes.Status400BadRequest)]
@@ -68,12 +68,12 @@ namespace CatalogService.WebApi.Controllers
         }
 
         /// <summary>
-        /// Delete the <see cref="CatalogItemModel"/>.
+        /// Delete the Catalog item.
         /// </summary>
-        /// <param name="itemId">The ID of <see cref="CatalogItemModel"/> to delete</param>
+        /// <param name="itemId">The ID of Catalog item to delete</param>
         /// <returns></returns>
         /// <response code="200">Deletion was executed successfully</response>
-        /// <response code="400">Error details</response>
+        /// <response code="400">An error occured while performing the operation</response>
         [HttpDelete]
         [Route("")]
         [BusinessLogicExceptionFilter(HttpCode.BadRequest, StatusCodes.Status400BadRequest)]
@@ -85,14 +85,14 @@ namespace CatalogService.WebApi.Controllers
         }
 
         /// <summary>
-        /// Get a list of <see cref="CatalogItemModel"/>.
+        /// Get a list of Catalog item.
         /// </summary>
-        /// <param name="categoryId">The ID of  <see cref="CatalogItemModel"/> to filter by</param>
+        /// <param name="categoryId">The ID of  Catalog item to filter by</param>
         /// <param name="pageNumber">Page number to retrieve</param>
         /// <param name="pageSize">The size of page</param>
         /// <returns></returns>
-        /// <response code="200">A collection of filtered  <see cref="CatalogItemModel"/> items</response>
-        /// <response code="400">Error details</response>
+        /// <response code="200">A collection of filtered  Catalog item items</response>
+        /// <response code="400">An error occured while performing the operation</response>
         [HttpGet]
         [Route("")]
         [BusinessLogicExceptionFilter(HttpCode.BadRequest, StatusCodes.Status400BadRequest)]

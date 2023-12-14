@@ -2,6 +2,8 @@ using AutoMapper;
 using CatalogService.BusinessLogic;
 using CatalogService.BusinessLogic.Mapper;
 using CatalogService.WebApi.Mapper;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace CatalogService.WebApi
 {
@@ -27,7 +29,20 @@ namespace CatalogService.WebApi
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(config =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                config.IncludeXmlComments(xmlPath);
+
+                config.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "CatalogService API",
+                    Version = "v1"
+                });
+
+                config.EnableAnnotations();
+            });
 
             var app = builder.Build();
 
