@@ -18,7 +18,9 @@ namespace CatalogService.BusinessLogic
                 .AddTransient<IValidator<CategoryDto>, CategoryValidator>()
 
                 .AddTransient<IService<CatalogItemDto>, GenericEntityService<CatalogItem, CatalogItemDto>>()
-                .AddTransient<IService<CategoryDto>, GenericEntityService<Category, CategoryDto>>();
+                .AddTransient<IService<CategoryDto>, GenericEntityService<Category, CategoryDto>>()
+
+                .AddTransient<ICatalogItemService, CatalogItemService>();
         }
     }
 }
