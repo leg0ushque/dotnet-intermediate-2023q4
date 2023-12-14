@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CatalogService.BusinessLogic;
 using CatalogService.BusinessLogic.Dtos;
 using CatalogService.BusinessLogic.Services;
 using CatalogService.WebApi.Filters;
@@ -10,67 +11,72 @@ namespace CatalogService.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CatalogItemsController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
-        private readonly ICatalogItemService _service;
+        private readonly IService<CategoryDto> _categoryService;
+        private readonly ICatalogItemService _catalogItemService;
         private readonly IMapper _mapper;
 
-        public CatalogItemsController(ICatalogItemService service, IMapper mapper)
+        public CategoriesController(
+            IService<CategoryDto> categoryService,
+            ICatalogItemService catalogItemService,
+            IMapper mapper)
         {
-            _service = service;
+            _categoryService = categoryService;
+            _catalogItemService = catalogItemService;
             _mapper = mapper;
         }
 
         /// <summary>
-        /// Create a <see cref="CatalogItemModel"/>.
+        /// Create a <see cref="CategoryModel"/>.
         /// </summary>
-        /// <param name="catalogItem"><see cref="CatalogItemModel"/> to create</param>
+        /// <param name="catalogItem"><see cref="CategoryModel"/> to create</param>
         /// <returns></returns>
         /// <response code="200">Created item's ID</response>
         /// <response code="400">Error details</response>
         [HttpPost]
         [Route("")]
         [BusinessLogicExceptionFilter(HttpCode.BadRequest, StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Create(CatalogItemModel catalogItem)
+        public async Task<IActionResult> Create(CategoryModel category)
         {
-            if (catalogItem is null)
+            if (category is null)
             {
                 return BadRequest();
             }
 
-            var catalogItemDto = _mapper.Map<CatalogItemDto>(catalogItem);
-            var result = await _service.CreateAsync(catalogItemDto);
+            var categoryDto = _mapper.Map<CategoryDto>(category);
+            var result = await _categoryService.CreateAsync(categoryDto);
 
             return Ok(new { createdId = result });
         }
 
         /// <summary>
-        /// Update the <see cref="CatalogItemModel"/>.
+        /// Update the <see cref="CategoryModel"/>.
         /// </summary>
-        /// <param name="catalogItem"><see cref="CatalogItemModel"/> to update</param>
+        /// <param name="catalogItem"><see cref="CategoryModel"/> to update</param>
         /// <returns></returns>
         /// <response code="200">Update was executed successfully</response>
         /// <response code="400">Error details</response>
         [HttpPut]
         [Route("")]
         [BusinessLogicExceptionFilter(HttpCode.BadRequest, StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Update(CatalogItemModel catalogItem)
+        public async Task<IActionResult> Update(CategoryModel category)
         {
-            if (catalogItem is null)
+            if (category is null)
             {
                 return BadRequest();
             }
 
-            var catalogItemDto = _mapper.Map<CatalogItemDto>(catalogItem);
-            await _service.UpdateAsync(catalogItemDto);
+            var categoryDto = _mapper.Map<CategoryDto>(category);
+            await _categoryService.UpdateAsync(categoryDto);
 
             return Ok();
         }
 
         /// <summary>
-        /// Delete the <see cref="CatalogItemModel"/>.
+        /// Delete the <see cref="CategoryModel"/> and all related <see cref="CatalogItemModel"/>.
         /// </summary>
-        /// <param name="itemId">The ID of <see cref="CatalogItemModel"/> to delete</param>
+        /// <param name="itemId">The ID of <see cref="CategoryModel"/> to execute deletion on</param>
         /// <returns></returns>
         /// <response code="200">Deletion was executed successfully</response>
         /// <response code="400">Error details</response>
@@ -79,29 +85,28 @@ namespace CatalogService.WebApi.Controllers
         [BusinessLogicExceptionFilter(HttpCode.BadRequest, StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete(int itemId)
         {
-            await _service.DeleteAsync(itemId);
+            await _catalogItemService.DeleteAllByCategoryAsync(itemId);
+
+            await _categoryService.DeleteAsync(itemId);
 
             return Ok();
         }
 
         /// <summary>
-        /// Get a list of <see cref="CatalogItemModel"/>.
+        /// Get a list of <see cref="CategoryModel"/>.
         /// </summary>
-        /// <param name="categoryId">The ID of  <see cref="CatalogItemModel"/> to filter by</param>
+        /// <param name="categoryId">The ID of <see cref="CategoryModel"/> to filter by</param>
         /// <param name="pageNumber">Page number to retrieve</param>
         /// <param name="pageSize">The size of page</param>
         /// <returns></returns>
-        /// <response code="200">A collection of filtered  <see cref="CatalogItemModel"/> items</response>
+        /// <response code="200">A collection of filtered <see cref="CategoryModel"/> items</response>
         /// <response code="400">Error details</response>
         [HttpGet]
         [Route("")]
         [BusinessLogicExceptionFilter(HttpCode.BadRequest, StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAll(
-            [FromQuery] int? categoryId = null,
-            [FromQuery] int? pageNumber = null,
-            [FromQuery] int? pageSize = null)
+        public async Task<IActionResult> GetAll()
         {
-            var items = await _service.GetAllByCategoryAsync(categoryId, pageNumber, pageSize);
+            var items = await _categoryService.GetAllAsync();
 
             return Ok(items);
         }
