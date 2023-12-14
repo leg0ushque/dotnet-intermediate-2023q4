@@ -24,12 +24,8 @@ namespace CatalogService.DataAccess.Repositories
         public async Task<TEntity> GetByIdAsync(int entityId, CancellationToken cancellationToken = default)
         {
             var entity = await _catalogContext.Set<TEntity>()
-                .FirstOrDefaultAsync(e => e.Id == entityId, cancellationToken);
-
-            if (entity == null)
-            {
-                throw new ArgumentException(nameof(entityId));
-            }
+                .FirstOrDefaultAsync(e => e.Id == entityId, cancellationToken)
+                ?? throw new ArgumentException(nameof(entityId));
 
             _catalogContext.Entry(entity).State = EntityState.Detached;
 
@@ -55,11 +51,8 @@ namespace CatalogService.DataAccess.Repositories
 
         public async Task DeleteAsync(int entityId, CancellationToken cancellationToken = default)
         {
-            var entity = await GetByIdAsync(entityId, cancellationToken);
-            if (entity is null)
-            {
-                throw new ArgumentException(nameof(entityId));
-            }
+            var entity = await GetByIdAsync(entityId, cancellationToken)
+                ?? throw new ArgumentException(nameof(entityId));
 
             _catalogContext.Remove(entity);
             await _catalogContext.SaveChangesAsync(cancellationToken);
