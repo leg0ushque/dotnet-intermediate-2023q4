@@ -5,6 +5,7 @@ namespace WeatherForecast.WebApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.WebHost.UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS"));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
