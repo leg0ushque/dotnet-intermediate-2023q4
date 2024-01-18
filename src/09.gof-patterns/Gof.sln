@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gof.CuttingShape.Adapter", "cutting-shape\Gof.CuttingShape.Adapter\Gof.CuttingShape.Adapter.csproj", "{39DDA293-5D76-433F-B98E-AA091B6D970D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CuttingShape", "CuttingShape", "{47344166-EC21-492B-B057-970FE4534D59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gof.CuttingShape.Composite", "cutting-shape\Gof.CuttingShape.Composite\Gof.CuttingShape.Composite.csproj", "{75158842-8C43-4B12-B838-AFBBFFF5526F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gof.CuttingShape.Facade", "cutting-shape\Gof.CuttingShape.Facade\Gof.CuttingShape.Facade.csproj", "{BDCA5DDE-7DCF-4F23-B277-0A40ED61B119}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gof.MainProgram", "Gof.MainProgram\Gof.MainProgram.csproj", "{97BC0A96-CFAC-400E-B612-A711EF73A3A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39DDA293-5D76-433F-B98E-AA091B6D970D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39DDA293-5D76-433F-B98E-AA091B6D970D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39DDA293-5D76-433F-B98E-AA091B6D970D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39DDA293-5D76-433F-B98E-AA091B6D970D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75158842-8C43-4B12-B838-AFBBFFF5526F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75158842-8C43-4B12-B838-AFBBFFF5526F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75158842-8C43-4B12-B838-AFBBFFF5526F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75158842-8C43-4B12-B838-AFBBFFF5526F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDCA5DDE-7DCF-4F23-B277-0A40ED61B119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDCA5DDE-7DCF-4F23-B277-0A40ED61B119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDCA5DDE-7DCF-4F23-B277-0A40ED61B119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDCA5DDE-7DCF-4F23-B277-0A40ED61B119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97BC0A96-CFAC-400E-B612-A711EF73A3A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97BC0A96-CFAC-400E-B612-A711EF73A3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97BC0A96-CFAC-400E-B612-A711EF73A3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97BC0A96-CFAC-400E-B612-A711EF73A3A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39DDA293-5D76-433F-B98E-AA091B6D970D} = {47344166-EC21-492B-B057-970FE4534D59}
+		{75158842-8C43-4B12-B838-AFBBFFF5526F} = {47344166-EC21-492B-B057-970FE4534D59}
+		{BDCA5DDE-7DCF-4F23-B277-0A40ED61B119} = {47344166-EC21-492B-B057-970FE4534D59}
+	EndGlobalSection
+EndGlobal
