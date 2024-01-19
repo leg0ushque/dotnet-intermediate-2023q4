@@ -13,6 +13,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gof.CuttingShape.Facade", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gof.MainProgram", "Gof.MainProgram\Gof.MainProgram.csproj", "{97BC0A96-CFAC-400E-B612-A711EF73A3A8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ManagingState", "ManagingState", "{67407095-09E3-4E06-8996-E53632FEE6A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AlteringBehavior", "AlteringBehavior", "{043E3739-F296-4A4A-99A0-1506D011AF38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReducingCoupling", "ReducingCoupling", "{CE39A85D-713A-4F51-ABEA-4652754019BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gof.ManagingState.BankSystem", "managing-state\Gof.ManagingState.BankSystem\Gof.ManagingState.BankSystem.csproj", "{482B1689-3B79-4117-B216-82F6DB7872FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gof.ManagingState.FeedManagerApplication", "managing-state\Gof.ManagingState.FeedManagerApplication\Gof.ManagingState.FeedManagerApplication.csproj", "{3CB74475-E059-47B1-9DE7-E4694DDCD6D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gof.ManagingState.IndianRestaurant", "managing-state\Gof.ManagingState.IndianRestaurant\Gof.ManagingState.IndianRestaurant.csproj", "{3B0A4A86-8E99-4C5C-8EBC-E8A45C8F7985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gof.ManagingState.Singleton", "managing-state\Gof.ManagingState.Singleton\Gof.ManagingState.Singleton.csproj", "{7874BC89-4676-4BEA-BF2D-60D0833FB467}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gof.AlteringBehavior.InsuranceCalculator", "altering-behavior\Gof.AlteringBehavior.InsuranceCalculator\Gof.AlteringBehavior.InsuranceCalculator.csproj", "{7C96ACE2-F3DE-42C9-BDF1-B304B1825884}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gof.AlteringBehavior.OrderShipment", "altering-behavior\Gof.AlteringBehavior.OrderShipment\Gof.AlteringBehavior.OrderShipment.csproj", "{D799DDF5-B3BD-49C9-9531-10020239FD34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +53,30 @@ Global
 		{97BC0A96-CFAC-400E-B612-A711EF73A3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97BC0A96-CFAC-400E-B612-A711EF73A3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97BC0A96-CFAC-400E-B612-A711EF73A3A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{482B1689-3B79-4117-B216-82F6DB7872FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{482B1689-3B79-4117-B216-82F6DB7872FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{482B1689-3B79-4117-B216-82F6DB7872FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{482B1689-3B79-4117-B216-82F6DB7872FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB74475-E059-47B1-9DE7-E4694DDCD6D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB74475-E059-47B1-9DE7-E4694DDCD6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB74475-E059-47B1-9DE7-E4694DDCD6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB74475-E059-47B1-9DE7-E4694DDCD6D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B0A4A86-8E99-4C5C-8EBC-E8A45C8F7985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B0A4A86-8E99-4C5C-8EBC-E8A45C8F7985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B0A4A86-8E99-4C5C-8EBC-E8A45C8F7985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B0A4A86-8E99-4C5C-8EBC-E8A45C8F7985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7874BC89-4676-4BEA-BF2D-60D0833FB467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7874BC89-4676-4BEA-BF2D-60D0833FB467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7874BC89-4676-4BEA-BF2D-60D0833FB467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7874BC89-4676-4BEA-BF2D-60D0833FB467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C96ACE2-F3DE-42C9-BDF1-B304B1825884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C96ACE2-F3DE-42C9-BDF1-B304B1825884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C96ACE2-F3DE-42C9-BDF1-B304B1825884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C96ACE2-F3DE-42C9-BDF1-B304B1825884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D799DDF5-B3BD-49C9-9531-10020239FD34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D799DDF5-B3BD-49C9-9531-10020239FD34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D799DDF5-B3BD-49C9-9531-10020239FD34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D799DDF5-B3BD-49C9-9531-10020239FD34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,5 +85,14 @@ Global
 		{39DDA293-5D76-433F-B98E-AA091B6D970D} = {47344166-EC21-492B-B057-970FE4534D59}
 		{75158842-8C43-4B12-B838-AFBBFFF5526F} = {47344166-EC21-492B-B057-970FE4534D59}
 		{BDCA5DDE-7DCF-4F23-B277-0A40ED61B119} = {47344166-EC21-492B-B057-970FE4534D59}
+		{482B1689-3B79-4117-B216-82F6DB7872FC} = {67407095-09E3-4E06-8996-E53632FEE6A5}
+		{3CB74475-E059-47B1-9DE7-E4694DDCD6D2} = {67407095-09E3-4E06-8996-E53632FEE6A5}
+		{3B0A4A86-8E99-4C5C-8EBC-E8A45C8F7985} = {67407095-09E3-4E06-8996-E53632FEE6A5}
+		{7874BC89-4676-4BEA-BF2D-60D0833FB467} = {67407095-09E3-4E06-8996-E53632FEE6A5}
+		{7C96ACE2-F3DE-42C9-BDF1-B304B1825884} = {043E3739-F296-4A4A-99A0-1506D011AF38}
+		{D799DDF5-B3BD-49C9-9531-10020239FD34} = {043E3739-F296-4A4A-99A0-1506D011AF38}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8A7886E-AD12-4448-9F11-023FFF3688A2}
 	EndGlobalSection
 EndGlobal
